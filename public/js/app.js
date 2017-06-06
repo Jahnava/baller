@@ -18,24 +18,26 @@ function drawBall() {
   ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
-  //setting wall boundaries for ball to bounce off of
-  //top wall
-  if(y + dy < 0) {
-    dy = -dy;
-  }
-  //bottom wall
-  if(y + dy > canvas.height || y + dy < 0) {
-    dy = -dy;
-  }
-  //left and right walls
-  if(x + dx > canvas.width || x + dx < 0) {
-    dx = -dx;
-  }
 }
 
 function draw() {
   ctx.clearRect(0,0, canvas.width, canvas.height);
   drawBall();
+  //setting wall boundaries for ball to bounce off of
+  //top wall
+  if(y + dy < 0) {
+    dy = -dy;
+  }
+
+  //bottom wall
+  if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+    dy = -dy;
+  }
+  //left and right walls
+  if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+    dx = -dx;
+  }
+  
   x += dx;
   y += dy;
 }
